@@ -1,0 +1,296 @@
+\documentclass{article}
+\textwidth 16.5cm
+\textheight 22.5cm
+\oddsidemargin 0.1mm
+\newcommand{\be}{\begin{equation*}}
+\newcommand{\ee}{\end{equation*}}
+\newcommand{\ba}{\begin{eqnarray*}}
+\newcommand{\ea}{\end{eqnarray*}}
+\newcommand{\bg}{\begin{gather*}}
+\newcommand{\egg}{\end{gather*}}
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
+\newcommand{\bt}{\begin{tikzpicture}}
+\newcommand{\et}{\end{tikzpicture}}
+\newcommand{\br}{\begin{flushright}}
+\newcommand{\er}{\end{flushright}}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{tikz}
+
+\begin{document}
+
+\title{FOURIER SERIES AND PARTIAL DIFFERENTIAL EQUATION}
+\author{ANUBHAB NAIYA}
+\maketitle
+\subsection*{Reality Conditions}
+Complex Functions
+\begin{gather*}
+f(x)={1\over{\sqrt{2\pi}}} ~{\int_{-\infty}^{\infty} F(k)~e^{ikx}dk}
+\\
+F(k)={1\over{\sqrt{2\pi}}} ~{\int_{-\infty}^{\infty} f(x)~e^{ikx}dx}
+\end{gather*}
+\\
+Conditions of F(k) when f(x) is barely real / imaginary :
+\ba
+f(x)&=&{1\over{\sqrt{2\pi}}} ~{\int_{-\infty}^{\infty} F(k)~e^{ikx}dk} \\
+f^*(x)&=&{1\over{\sqrt{2\pi}}} ~{\int_{-\infty}^{\infty} F^*(k)~e^{ikx}dk}\\
+Put~ k'&=&-k \implies k = -k' \\
+
+{~}&=&{1\over{\sqrt{2\pi}}}~{\int_{\infty}^{-\infty} F^*(-k')~e^{ik'x}d(-k')}\\
+{~}&=&{1\over{\sqrt{2\pi}}}~{\int_{-\infty}^{\infty} F^*(-k')~e^{ik'x}d(k')}\\
+{~}&=&{1\over{\sqrt{2\pi}}}~{\int_{-\infty}^{\infty} F^*(-k)~e^{ikx}d(k)}\\
+Real~ f(x)~ is ~ f(x)&=&{1\over{\sqrt{2\pi}}} ~{\int_{-\infty}^{\infty}
+F(k)~e^{ikx}dk} \\
+{F^*(-k)}&=&{F(k)}\\
+{F^*(k)}&=&{F(-k)}
+\ea
+\\
+Real form of Fourier integral :
+\ba
+f(x)&=&{1\over{2\pi}}~{\int_{-\infty}^{\infty}}{\int_{\infty}^{\infty}}{f(u)cosk(x-u)dkdu} \\
+{~}&=&{\int_{-\infty}^{\infty}}{f(u)}[{1\over{2\pi}}~{\int_{\infty}^{\infty}}cosk(x-u)dk]dx\\
+{~}&=&{{\int_{-\infty}^{\infty}}{f(u)}\delta(x-u)}du \\
+\ea
+The Real Representation of ${\delta(x-u)}$
+\ba
+{\delta(x-u)}&=&{1\over{2\pi}}{\int_{-\infty}^{\infty}}cosk(x-u)dk
+\ea
+The Integral transform of $f(x)$
+\ba
+f(x)&=&{\int_{-\infty}^{\infty}}{\pi(x-u)f(u)du}
+\ea
+\bc $\pi(x-u) =$ kernal \ec \vspace{4mm}
+\textbf{Consider :} $ {\int_{-\infty}^{\infty}}{\pi(x-u)f(u)du} = g(x) $
+\vspace{0.2cm}\\
+1. $ g(x) \neq f(x) $ for an arbitary kernal $\pi(x-u)$ \vspace{0.2cm}\\
+2. $\pi$ need not to be a function of $(x-u) , \pi(x,u) $\\
+$g(x) = {\int_{-\infty}^{\infty}}{\pi(x-u)f(u)du}$ gives an integral operator on
+f(x) to yield a new function $g(x)$\\
+\subsection*{Method of Seperation of variables to solve PDE :}
+\textbf{Laplaces Equation :}
+\be {\nabla^2} V = 0 \ee
+\be \vec{\nabla}.\vec{E} = {1\over{\epsilon_{0}}}\rho ~~~ and ~~~ \vec{E} = \nabla V\ee
+\bc where $V(x,y,z)$ is eclectrostatic potential \ec
+
+\textbf{Poisson's Equation :}
+\be \nabla^{2}V(\vec{r}) = -{{\rho(\vec{r})}\over{\epsilon_{0}}} \ee
+\bc where $\nabla^{2}$ is Laplacian \ec
+\be \nabla^{2}V = 0 \ee
+\begin{equation} \implies {{\partial^{2}V}\over{\partial x^{2}}} +
+{{\partial^{2}V}\over{\partial y^{2}}} + {{\partial^{2}V}\over{\partial z^{2}}} = 0
+\end{equation}
+\bc This is the Elliptic Partial differential equation \ec
+\textbf{Wave Equation :}\\
+for $\mid{\psi(x,t)}\mid$ not large :
+\be
+{{\partial^{2}\psi}\over{\partial x^{2}}}
+~=~{1\over{c^2}}{{{\partial^{2}\psi}\over{\partial t^{2}}}} \ee
+\be \implies {{{\partial^{2}\psi}\over{\partial x^{2}}} {1\over{c^2}}{{{\partial^{2}\psi}\over{\partial t^{2}}}}}~=~{0}
+\ee
+c is the velocity of the wave $\sqrt{T\over{m}}$ \\
+A wave in 3 dimensions
+\be {\nabla^{2}\psi}(\vec{r},t) ~=
+~{1\over{c^{2}}}{{\partial^{2}\psi(\vec{r},t)}\over{\partial t^{2}}} \ee
+\begin{equation} \implies {{\partial^{2}\psi}\over{\partial x^{2}}} +
+{{\partial^{2}\psi}\over{\partial y^{2}}} + {{\partial^{2}\psi}\over{\partial
+z^{2}}} - {1\over{c^2}}{{{\partial^{2}\psi}\over{\partial t^{2}}}}~ =~ 0
+\end{equation}
+\bc This is the Hyperbolic Partial differential equation \ec
+\vspace{2cm}
+\subsection*{Method of Seperation of variables to solve the Laplace's Equation
+:}
+\textbf{(Boundary Value problem)}
+\vspace{8cm}
+\be \begin{aligned}
+{\nabla^2} V = 0 ~~~~~~\text{(Within box)}
+\end{aligned} \ee
+\be \implies {{\partial^{2}V}\over{\partial x^{2}}} +
+{{\partial^{2}V}\over{\partial y^{2}}} + {{\partial^{2}V}\over{\partial z^{2}}} = 0
+\ee
+\be \romannumeral 1)~~ V=0~,~ x=0 \ee
+\be \romannumeral 2)~~ V=0~,~ x=\pi \ee
+
+\be \romannumeral 3)~~ V=0~,~ z=0 \ee
+\be \romannumeral 4)~~ V=0~,~ z=\pi \ee
+\be \romannumeral 5)~~ V={V_{0}}~,~ y=0 \ee
+\be \romannumeral 6)~~ V=0~as~ y=\infty \ee
+\vspace{1cm}
+\be m{d^{2}\over {dt^{2}}}~=~ F(x) \ee
+Subjected to : \be x(t=0) = x_{0} ~~, ~~x^{.}(t=0) = u_{0} \ee
+\be
+or~~: x(t=0) = x_{0} ~~, ~~x^{.}(t=T) = X_{0} \ee
+\pagebreak
+\ba
+\nabla^{2}~V(x,y,z) &=& 0 \\
+V(x,y,z) &=& X(x)~ Y(y)~ Z(z) \\
+V(x,y,z) &=& ax + by + cz + d \ea
+\be {d^{2}X \over {dx^{2}}}~Y(y)~Z(z) + {d^{2}Y \over {dy^{2}}}~X(x)~Z(z)
++{d^{2}Z \over {dz^{2}}}~Z(z)~Y(y) = 0 \ee
+\be{ 1\over{V}}~[\hspace{2cm}] =0 \ee
+\be {1\over{X(x)}}~ {d^{2}X \over {dx^{2}}} + {1\over{Y(y)}}~{d^{2}Y \over
+{dy^{2}}} + {1\over{Z(z)}}~{d^{2}Z \over {dz^{2}}} ~= 0 \ee
+\be F(x) ~~+~~~ H(y)~~~~ +~~ G(z)~ = 0 \ee
+\be F(x) = C_{1},~ H(y) = C_{2},~G(z) = C_{3} \ee
+\ba {d^{2}X\over{dx^{2}}} &=& C_{1}X(x) \\
+{d^{2}Y\over{dy^{2}}} &=& C_{2}Y(y) \\
+{d^{2}Z\over{dz^{2}}} &=& C_{3}Z(z) \ea
+\be C_{1} + C_{2} + C_{3} = 0 \ee
+\bc$ C_{1}= -k^{2} ~,~C_{3} = -l^{2}~~ $ where $k,l$ are real \ec
+\be \implies C_{2} = k^{2} + l^{2} \ee
+\be {d^{2}X\over{dx^{2}}} = k^{2}X, ~~~{d^{2}Z\over{dz^{2}}} = l^{2}Z, ~~~
+{d^{2}Y\over{dy^{2}}} = {(k^{2} + l^{2})}Y \ee \\
+\ba X(x) &=& A\cos{kx} + B\sin{kx} \\
+Z(z) &=& C\cos{lx} + D\sin{lx} \\
+Y(y) &=& E~e^{\sqrt{(k^{2} + l^{2})}y}~+~F~e^{-\sqrt{(k^{2} + l^{2})}y} \ea
+\be e^{\sqrt{(k^{2} + l^{2})}y} \to \infty ~ as ~y \to \infty \ee
+\hspace{6cm} $ e^{-\sqrt{(k^{2} + l^{2})}y} \to 0 ~ as ~y \to \infty $
+~~suitable solution b.c(\romannumeral 6)
+\ba V(x,y,z) &=& X(x)~Y(y)~Z(z)\\
+&=& F~e^{-\alpha y}(A\cos{kx} +B\sin{kx})(C\cos{lz}+D\sin{lz}) \hspace{7mm}
+[\alpha=\sqrt{(k^{2} + l^{2})}]\\
+&=& e^{-\alpha y}(A\cos{kx} +B\sin{kx})(C\cos{lz}+D\sin{lz}) \hspace{4mm}
+[\text{Renaming : AF $\to$ A and BF $\to$ B}]
+\ea
+
+\hspace{3cm} $k~,~l~~?~~,~~ A~,~B~,~C~,~D~~?$\\
+k to be a positive integer m, ~$ X(x) = A\cos{mx} + B\sin{mx} $ ~Choose
+$A=0$,\\
+$x=0 ~\to~ X=0~~,~~V=0$ \\
+$x=\pi ~\to~X=0~~,~~V=0$\\
+For $A=0$ ,
+\be X(x)~=~ B\sin{mx}~,~~\text{[$m$ is any positive integer]}\ee
+\be Z(z)~=~ D\sin{nz}~,~~\text{[$l=n$ is any positive integer]}\ee
+\pagebreak
+\ba V(x,y,z) &=& B~D ~e^{\sqrt{(k^{2} + l^{2})}y}~ \sin{mx}~\sin{nz}\\
+&=& H ~e^{\sqrt{(k^{2} + l^{2})}y}~ \sin{mx}~\sin{nz}\\
+\text{At $y=0$}~, ~V(x,0,z) &=& H~\sin{mx}~ \sin{nx}\\
+\e
+\be V~=\sum^{\infty}_{m=1}\sum^{\infty}_{n=1}H(m,n)~e^{-\sqrt{(k^{2} +
+l^{2})}y}~\sin{(mx)}~ \sin{(nx)} \ee
+Using Fourier Series expansion to determine $H(m,n)$ from $V=V_{0}~,~y=0$
+\\
+\be V~=\sum^{\infty}_{m=1}\sum^{\infty}_{n=1}H(m,n)~\sin{(mx)}~ \sin{(nx)}
+\ee
+To determine H(p,q) :
+\ba
+H(p,q) &=& \bigg({2\over{\pi}}\bigg)^2 \int_0^\pi \int_0^\pi
+V_0\sin(px)\sin(qz) dxdz\\
+&=& \bigg({2\over{\pi}}\bigg)^2 V_0 ~{1\over{pq}}~ (-\cos{px})\bigg
+{\vert}_0^\pi (-cos{qz})\bigg\vert_0^\pi \\
+&=& {V_{0}\over{pq}}~\bigg({2\over{\pi}}\bigg)^{2}.~ 4 ~~~~\text{Provided
+both $p~,~q$ are odd}\\
+\\
+&=& 0 ~~~~\text{Otherwise}
+\ea \vspace{2mm}
+\be
+H(p,q)={16~V_{0}\over{\pi^{2}pq}}~~~,~~~H(m,n)={16~V_{0}\over{\pi^{2}mn}}
+\ee
+\be
+V~={\sum^{\infty}_{m=1}}\sum^{\infty}_{n=1}~{16~V_{0}\over{\pi^{2}mn}}~e^{\sqrt{(k^{2} + l^{2})}y}~\sin{(mx)}~ \sin{(nx)} \ee \\
+Ex . 4 \big[Griffith Chapter-3\big] \\
+\vspace{15mm}
+\br $ \romannumeral 1)~~ V=0~,~ x=0 $ \er
+\br $ \romannumeral 2)~~ V=0~,~ x=\pi $ \er
+
+\br $ \romannumeral 3)~~ V=0~,~ z=0 $ \er
+\br $ \romannumeral 4)~~ V=0~,~ z=\pi $ \er
+\pagebreak
+\bc V is independent of z \ec
+\be \implies \nabla^{2}V~=~0~~~\to~ {\partial^{2}V\over{\partial
+x^{2}}}~+~{\partial^{2}V\over{\partial x^{2}}}~=~0 \ee
+\be V(x,y)~=~X(x)Y(y) \ee
+\be {1\over{X(x)}} {d^{2}X \over {dx^{2}}} + {1\over{Y(y)}}{d^{2}Y \over
+{dy^{2}}} ~=~ 0 \ee
+\be {d^{2}X\over{dx^{2}}} = C_{1}X(x) \ee
+\be {d^{2}Y\over{dy^{2}}} = C_{2}Y(y) \ee
+\be C_{1} + C_{2} = 0~~,~~C_{1}=-C_{2} \ee
+\ba
+Y(y) &=& B\sin ny \\
+C_2 &=&-n^2 ~~\Rightarrow~ C_1 =n^2 \\
+X(x) &=& A e^nx+ Ce^-nx \\
+X(a) &=&X(-a) ~~\Rightarrow~ A=C
+\ea
+\ba
+V(x,y) &=& A(e^nx + e^-nx)\sin ny \\
+&=&H~\cos hnx ~\sin ny \ea \br where $n$ is a positive integer \er
+\ba V(x,y) &=&\sum^{\infty}_{n=1}H~\cos hnx ~\sin ny \\
+V(a,y)&=&V(-a,y)~~\implies~V_{0} \\
+V_{0} &=& \sum^{\infty}_{n=1}H~\cos h(na)~\sin ny \\
+H~\cos h(na) &=& {2 \over{pi}}~ {\int^{\pi}_{0}} V_{0}~\sin ny dy \\
+&=& {4V_{0}\over n\pi} ~~~~~~~\text{when $n$ is odd} \\
+&=& 0 ~~~~~~~~~~~\text{when $n$ is even} \\
+H_{n} &=& {4V_{0}\over n\pi \cos h(na)}
+\ea
+\pagebreak
+\ba \nabla^{2}V &=& 0 \\
+\textbf{in the Spherical Polar Coordinates} \\
+\nabla^{2}V &=& {1\over{r^2}}{\partial \over{\partial r}}\bigg(r^2{\partial V
+\over {\partial r}}\bigg)~+~{1\over{r^{2}\sin \theta}}{\partial \over{\partial
+\theta}}\bigg(\sin \theta {\partial \over{\partial
+\theta}}\bigg)~+~{1\over{r^{2}{\sin ^2} \theta}}\bigg({{\partial^2}V \over
+{\partial \phi^2}}\bigg) =0 \ea
+
+\ba
+V(r,\theta,\phi) &=& R(r)~P(\theta)~\Phi(\phi) \\
+&=& {1\over{R(r)}}{1\over{r^2}}{d \over{d r}}\bigg(r^2{dR \over d
+r}\bigg)+{1\over{P(\theta)}}{1\over{r^{2}\sin \theta}}{\partial \over{\partial
+\theta}}\bigg(\sin \theta {dP \over{d
+\theta}}\bigg)+{1\over{\Phi(\phi)}}{1\over{r^{2}{\sin ^2}
+\theta}}\bigg({{d^2}\Phi \over {d \phi^2}}\bigg) =0 \\
+{1\over{R(r)}}{d \over{d r}}\bigg(r^2{dR \over d r}\bigg) &=& {1\over{P(\theta)}}{1\over{\sin \theta}}{\partial \over{\partial
+\theta}}\bigg(\sin \theta {dP \over{d \theta}}\bigg)~~{1\over{\Phi(\phi)}}{1\over{\sin {^2} \theta}}\bigg({{d^2}\Phi \over {d
+\phi^2}}\bigg)\\
+&=& l~(l+1)\\
+{d \over{d r}}\bigg(r^2{dR \over d r}\bigg) &=& l~(l+1)~R \\
+-l(l+1) &=& {1\over{P(\theta)}}{1\over{\sin \theta}}{\partial \over{\partial
+\theta}}\bigg(\sin \theta {dP \over{d
+\theta}}\bigg)~+~{1\over{\Phi(\phi)}}{1\over{\sin {^2} \theta}}\bigg({{d^2}\Phi
+\over {d \phi^2}}\bigg) \\
+{\sin \theta \over{P}}{d\over{d\theta}}\bigg(\sin \theta {dP\over
+{d\theta}}\bigg)+l(l+1){{\sin ^2}\theta} &=& {1\over{\Phi(\phi)}}\bigg({{d^2}\Phi \over {d \phi^2}}\bigg) ~=~m^{2} \\
+\Phi (\phi)&=&\Phi(2\pi+\phi) \\
+{1\over{\Phi(\phi)}}\bigg({{d^2}\Phi \over {d \phi^2}}\bigg) &=& -m^{2} \\
+\Phi &=& c e^{im\phi} ~~~~m=0,\pm 1,\pm 2,......
+\ea
+\ba
+(\sin \theta){d\over{d\theta}}\bigg(\sin \theta {dP \over{d\theta}}\bigg) +
+\big[l(L+1)\sin^{2}\theta - m^{2}\big]~P(\theta) &=& 0 \\
+(\sin \theta){d\over{d\theta}}\bigg(\sin \theta {dP \over{d\theta}}\bigg) +
+\bigg[l(L+1)- {m^{2}\over\sin^{2}\theta }\bigg]~P(\theta) &=& 0 \\
+\ea
+\be x~=~\cos\theta \ee
+\be (1-{x^2}){d^{2}P \over{dx^{2}}}~-~2x{dP\over{dx}}~+~\bigg[l(l+1)-{m^{2}
+\over {1-x^{2}}}\bigg]~P(\theta)~=~0 \ee
+\pagebreak
+\be (1-{x^2}){d^{2}P \over{dx^{2}}}~-~2x{dP\over{dx}}~+~\bigg[l(l+1)-{m^{2}
+\over {1-x^{2}}}\bigg]~P(\theta)~=~0 \ee
+\textbf{Associated Legendre equation }
+\be P_{l}^{m}(x)~,~x=\cos\theta \ee
+Legendre Polynomials :
+
+\be (1-x^{2}){d^{2}P_{l}(x)\over{dx^{2}}}~-~2x{dP_{l}\over{dx}}~+~l(l+1)P_{l} =
+0 \ee
+\be l=0,1,2,3.... \ee
+\be P_{0}(x)=1 ~~,~~P_{1}(x) = \cos \theta \ee
+\ba
+P_{2}(x) &=& {1\over{2}}({3\cos^{2}\theta -1}) \\
+P_{3}(x) &=& {1\over{2}}({5\cos^{3}\theta -3\cos \theta}) \\
+\\
+P_{l}(-x) &=& (-1)^{l}{P_{l}(x)} \\
+P_{l}\big[\cos (\pi - \theta) \big] &=& (-1)^{l}{P_{l}(\cos \theta)}
+\ea
+Associated Legendre Polynomials :
+\be P_{l}^{m}(x) ~~~,~~~ l=0,1,2,3,....~~~ m=0,\pm1,\pm2,\pm3,....\pm l \ee
+\be P_{l}^{m}(x)~=~\big( 1x^{2}\big)^{m\over{2}}~{d^{m}\over{dx^{n}}}~P_{l}(x) \ee
+\ba Y_{lm}(\theta ,\phi) &=& P_{l}^{m}~{(\cos \theta )}~e^{im\phi}\\
+{d\over{dr}}\bigg({r^2}{dR\over{dr}}\bigg) &=& l~(l+1)~R(r)\\
+R(r) &=& {A_{l}\over{r^{l+1}} }~+~ B_{l}r^{l} \\
+V(r,\theta,\phi) &=& R_{l}(r)~P_{l}^{m}(\cos \theta)~\Phi(\phi)
+\ea
+\boldmath \be V(r,\theta,\phi)~=~{\sum^{\infty}_{l=0}}~{\sum^{l}_{m=l}}~\bigg({A_{l}\over{r^{l+1}}}~+~B_{l}r^{l} \bigg)~P_{l}^{m}(\cos
+\theta)~e^{im\phi} \ee
+
+\end{document}
+
+

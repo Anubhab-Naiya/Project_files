@@ -1,0 +1,118 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chat Appp</h1>
+    <input type="text" id="message" placeholder="Write a message">
+    <button id="sendBtn">send msg</button>
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const sendBtn = document.getElementById('sendBtn');
+        const Inputmsg = document.getElementById('message')
+        sendBtn.addEventListener('click',(e)=>{
+            //console.log(Inputmsg.value)
+            socket.emit('input message',Inputmsg.value)
+        })
+        socket.on('message',message=>console.log(message))
+
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat beta</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #inpmsg{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            outline:none;
+            font-size: large;
+            
+        }
+        #btn{
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+            font-size: 16px;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            padding: 12px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        ul li:nth-child(odd) { background: #efefef; }
+        
+    </style>
+</head>
+<body>
+    <h1>Chat Start</h1>
+    <ul id="ul">
+       <li>hello</li>
+    </ul>
+     
+        <input type="text" id="inpmsg" placeholder="write your text here">
+        <button id="btn">SEND</button>
+     
+   
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script> 
+    const socket=io()
+    const sendBtn = document.getElementById('btn')
+    const inpmsg = document.getElementById('inpmsg')
+    messages = document.getElementById('ul')
+     
+    sendBtn.addEventListener('click',(e)=>{
+        socket.emit('input message',inpmsg.value)
+        inpmsg.value=''
+
+    })
+    // socket.on('input message',(msg)=>{
+    //     console.log(msg)
+    //     const li = document.createElement('li')
+    //     li.textContent=msg
+    //     document.getElementById('ul').appendChild(li)
+    // })
+    socket.on('input message', (msg) => {
+        console.log(msg);
+        // create a new li element
+        const item = document.createElement('li');
+        item.textContent = msg;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+  });
+    
+    </script>
+</body>
+</html>

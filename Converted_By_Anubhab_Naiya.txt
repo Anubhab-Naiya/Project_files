@@ -1,0 +1,125 @@
+
+Author: Anubhab Naiya
+
+#include <SoftwareSerial.h>
+
+// Motor driver pins
+const int enA = 9; // Enable pin for Motor A (Driver 1)
+const int in1 = 8; // Input 1 pin for Motor A (Driver 1)
+const int in2 = 7; // Input 2 pin for Motor A (Driver 1)
+const int enB = 0; // Enable pin for Motor B (Driver 1)
+const int in3 = 2; // Input 1 pin for Motor B (Driver 1)
+const int in4 = 1; // Input 2 pin for Motor B (Driver 1)
+const int enC = 6; // Enable pin for Motor C (Driver 2)
+const int in5 = 5; // Input 1 pin for Motor C (Driver 2)
+const int in6 = 4; // Input 2 pin for Motor C (Driver 2)
+const int enD = 3; // Enable pin for Motor D (Driver 2)
+const int in7 = 10; // Input 1 pin for Motor D (Driver 2)
+const int in8 = 11; // Input 2 pin for Motor D (Driver 2)
+
+SoftwareSerial bluetoothSerial(12, 13); // RX, TX pins for HC-05 module
+
+char command; // Variable to store received command from Bluetooth
+
+void setup() {
+    // Set motor pins as outputs
+    pinMode(enA, OUTPUT);
+    pinMode(in1, OUTPUT);
+    pinMode(in2, OUTPUT);
+    pinMode(enB, OUTPUT);
+    pinMode(in3, OUTPUT);
+    pinMode(in4, OUTPUT);
+    pinMode(enC, OUTPUT);
+    pinMode(in5, OUTPUT);
+    pinMode(in6, OUTPUT);
+    pinMode(enD, OUTPUT);
+    pinMode(in7, OUTPUT);
+    pinMode(in8, OUTPUT);
+
+    bluetoothSerial.begin(9600); // Initialize software serial communication
+    Serial.begin(9600); // Initialize serial communication (for debugging, optional)
+
+    // Rotate Motor C (Driver 2) continuously in one direction
+    digitalWrite(in5, HIGH);
+    digitalWrite(in6, LOW);
+    analogWrite(enC, 255); // Set the motor speed for Motor C (Driver 2)
+
+    // Rotate Motor D (Driver 2) continuously in one direction
+    digitalWrite(in7, HIGH);
+    digitalWrite(in8, LOW);
+    analogWrite(enD, 255); // Set the motor speed for Motor D (Driver 2)
+}
+
+void loop() {
+    if (bluetoothSerial.available()) {
+        command = bluetoothSerial.read(); // Read the incoming command from HC-05 Bluetooth
+
+        // Process the received command
+        if (command == 'F') {
+            // Move motors A and B forward
+            moveForward();
+        } else if (command == 'B') {
+            // Move motors A and B backward
+            moveBackward();
+        } else if (command == 'L') {
+            // Turn left (rotate motors in opposite directions)
+            turnLeft();
+        } else if (command == 'R') {
+            // Turn right (rotate motors in opposite directions)
+            turnRight();
+        } else if (command == 'S') {
+            // Stop motors A and B
+            stopMotors();
+        }
+    }
+}
+
+void moveForward() {
+    // Rotate motors A and B forward
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+    analogWrite(enA, 150);
+    analogWrite(enB, 150);
+}
+
+void moveBackward() {
+    // Rotate motors A and B backward
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    analogWrite(enA, 150);
+    analogWrite(enB, 150);
+}
+
+void turnLeft() {
+    // Rotate motors A and B in opposite directions to turn left
+    digitalWrite(in1, HIGH);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, HIGH);
+    analogWrite(enA, 150);
+    analogWrite(enB, 150);
+}
+
+void turnRight() {
+    // Rotate motors A and B in opposite directions to turn right
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, HIGH);
+    digitalWrite(in3, HIGH);
+    digitalWrite(in4, LOW);
+    analogWrite(enA, 150);
+    analogWrite(enB, 150);
+}
+
+void stopMotors() {
+    // Stop motors A and B
+    digitalWrite(in1, LOW);
+    digitalWrite(in2, LOW);
+    digitalWrite(in3, LOW);
+    digitalWrite(in4, LOW);
+    analogWrite(enA, 0);
+    analogWrite(enB, 0);
+}
